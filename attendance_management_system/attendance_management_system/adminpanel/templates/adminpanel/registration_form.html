@@ -1,0 +1,59 @@
+{% extends 'adminpanel/basic.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row centered-form justify-content-center align-items-center my-5">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4 shadow p-2 mb-4 rounded" style="background-color:#c4ccc7">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                  </div>
+                     <div class="panel-body">
+
+        <form action="../../adminpanel/ragister/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+        <p class="text-center text-light bg-danger rounded"><strong>{{message}}</strong></p>
+            <input type="text" name="name" class="form-control" value="{{ emp.name }}" placeholder="UserName" required>
+        </div>
+        <div class="form-group">
+            <input type="number" name="phone" class="form-control" value="{{ emp.phone }}" placeholder="Mobile No" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" class="form-control" value="{{ emp.account.email }}" placeholder="Email Address" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+            </div>
+        </div>                        
+        <div class="form-group">
+            <div class="custom-file">
+            <input type="file" name="img" class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01" value="{{ emp.image }}">
+            <label class="custom-file-label" for="inputGroupFile01">Profile Picture</label>
+            </div>
+        </div>
+        <div class="form-group">
+                <select class="form-control" name="gender" value="{{ emp.gender }}" required>
+                <option name="">Select Gender</option>
+                <option name="Male">Male</option>
+                <option name="Female">Female</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <input type="date" name="date_of_birth" class="form-control" value="{{ emp.date_of_birth }}" placeholder="Date Of Birth" required>
+        </div>
+        <input type="hidden" name="id" value="{{ emp.id }}">
+        <div class="form-group">
+            <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>
+        </div>
+        </form>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

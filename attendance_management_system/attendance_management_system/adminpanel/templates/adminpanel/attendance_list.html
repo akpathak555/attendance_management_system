@@ -1,0 +1,38 @@
+{% extends 'adminpanel/basic.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="jumbotron mx-auto">
+<table class="table table-striped">
+    <thead class="table-info">
+      <tr>
+          {% for data in emp|slice:":1" %}
+
+        <th>Employee Name :  {{ data.employee.name }}</th>
+        <th>Email :  {{ data.employee.account.email }}</th>
+        <th><input type="button" value="Send" class="btn btn-info"></th>
+          {% endfor %}
+      </tr>
+    </thead>
+  <thead class="table-primary">
+    <tr>
+      <th>Date</th>
+      <th>Entry Time</th>
+      <th>Exit Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in emp %}
+        <tr>
+        <td>{{ data.current_date }}</td>
+        <td>{{ data.entry_time }}</td>
+        <td>{{ data.exit_time }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+        </div>
+    </div>
+</div>
+{% endblock %}

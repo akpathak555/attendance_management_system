@@ -1,0 +1,80 @@
+{% extends 'user/basic.html' %}
+
+{% block body %}
+<style>
+    .aria {
+  opacity: 0.8;
+}
+.big-checkbox {
+  width: 30px;
+  height: 30px;
+}
+</style>
+<div class="container">
+<div class="row mt-3">
+  <div class="float-left col-sm-6 m-auto">
+    <div class="aria shadow-lg p-2 ml-5 bg-white rounded">
+        <table class="table table-striped table-dark rounded">  
+          <tbody>
+            <h4 class="bg-warning" align="center"><big>User Information</big></h4>
+              <tr>
+                <th scope="row"><big>UserName:</big></th>
+                <td><big>{{ emp.name }}</big></td>
+              </tr>
+              <tr>
+                <th scope="row"><big>Profile Pic:</big></th>
+                <td><img src="{{ emp.image.url }}" height="130" width="110"/></td>
+              </tr>
+              <tr>
+                <th scope="row"><big>Email-Id:</big></th>
+                <td><big>{{ emp.account.email }}</big></td>
+              </tr>
+              <tr>
+                <th scope="row"><big>Mobile-No:</big></th>
+                <td><big>{{ emp.phone }}</big></td>
+              </tr>
+              <tr>
+                <th scope="row"><big>Gender:</big></th>
+                <td><big>{{ emp.gender }}</big></td>
+              </tr>
+              <tr>
+                <th scope="row"><big>Date Of Birth:</big></th>
+                <td><big>{{ emp.date_of_birth }}</big></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  <div class="float-right col-sm-6 m-auto">
+    <div class="aria shadow-lg p-2 ml-5 bg-white rounded">
+      <table class="table table-striped table-dark rounded">  
+        <tbody>
+          <h4 class="bg-info" align="center"><big>Attendance Chart</big></h4>
+            <tr class="text-warning">
+              <th scope="row"><big>Current Date:</big></th>
+              <td><big><b>{{ date }}</b></big></td>
+            </tr>
+            <tr>
+              <th scope="row"><big>Entry:</big></th>
+              <td><big><form method="POST" action="../attendance-check/">{% csrf_token %}<button type="submit" name="entry" onclick="Swal.fire('Welcome','Good job!','success')" value="entry {{ emp.name }}" class="btn btn-light">Entry</button></form></big></td>
+            </tr>
+            <tr>
+              <th scope="row"><big>Exit:</big></th>
+              <td><big><form method="POST" action="../attendance-check/">{% csrf_token %}<button type="submit" name="entry" onclick="Swal.fire('Thank You','Good job!','success')" value="exit {{ emp.name }}" class="btn btn-light">Exit</button></form></big></td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9">
+// function test() {
+//   Swal.fire(
+//   'Good job!',
+//   'You clicked the button!',
+//   'success'
+// )
+// }
+</script>
+{% endblock %}
